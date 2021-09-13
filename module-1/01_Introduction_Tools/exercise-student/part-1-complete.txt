@@ -17,10 +17,6 @@
 /c/Users/Student/playground/usa/ohio/franklin/columbus.txt
 /c/Users/Student/playground/usa/ohio/hamilton
 /c/Users/Student/playground/usa/ohio/hamilton/cincinnati.txt
-/c/Users/Student/playground/usa/ohio/wood
-/c/Users/Student/playground/usa/ohio/wood/bowling-green.txt
-/c/Users/Student/playground/usa/ohio/wood/perrysburg.txt
 /c/Users/Student/playground/usa/pennsylvania
 /c/Users/Student/playground/usa/pennsylvania/allegheny
 /c/Users/Student/playground/usa/pennsylvania/allegheny/pittsburgh.txt
-/c/Users/Student/playground/work
