@@ -152,10 +152,11 @@ public class Lecture {
 
         //     Start;       Keep going while         Increment by one;
         for (int i = 0; i < arrayToLoopThrough.length; i++) {
+            // corrected from ( i <= arrayToLoopThrough.length)
             counter = counter + 1; //counter ++
         }
 
-        return counter == 5;
+        return counter == 5; // if incorrect, this would day 6
     }
 
     /*
