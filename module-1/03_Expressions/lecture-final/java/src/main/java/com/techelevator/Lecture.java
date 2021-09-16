@@ -5,9 +5,7 @@ public class Lecture {
     1. This method is named returnNotOne and it returns an int. Change
     it so that it returns something other than a 1.
     */
-    public int returnNotOne() {
-        return 9 / 4;
-    }
+    public int returnNotOne() { return 9 / 4; }
 
     /*
     2. This method is named returnNotHalf and it returns a double. Change
