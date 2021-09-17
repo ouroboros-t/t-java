@@ -1,6 +1,6 @@
 package com.techelevator;
 
-import java.util.Scanner;
+import java.util.Scanner; // allows you to import Scanner tool to read user input. REQUIRED.
 
 class DiscountCalculator {
 
@@ -35,12 +35,11 @@ class DiscountCalculator {
 
             double priceAfterDiscount = price - priceDiscount;
 
-            System.out.println("Price: " + price + " Discount: " + priceDiscount + " Final price: " + priceAfterDiscount);
+            System.out.println("Price: " + price  + " Discount: " + priceDiscount + " Final price: " + priceAfterDiscount);
 
-            System.out.format("Price: $%9.2f Discount: $%9.2f %n", price, priceDiscount);
+            System.out.format("Price: $%9.2f%n Discount: $%9.2f %n", price, priceDiscount);
+
         }
-
-
 
 
     }
