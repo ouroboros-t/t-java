@@ -145,9 +145,12 @@ public class Exercises {
         if ((peterMoney >= 5000) && (paulMoney >= 10000)) { //then
             int paulContribution = (int) (paulMoney * 0.25);
             int peterContribution = (int) (peterMoney * 0.25);
+
             int paulMoneyAfterContribution = paulMoney - paulContribution;
             int peterMoneyAfterContribution = peterMoney - peterContribution;
+
             int peterPaulPartnership = peterContribution + paulContribution;
+
             peterPaul.put("Peter", peterMoneyAfterContribution);
             peterPaul.put("Paul", paulMoneyAfterContribution);
             peterPaul.put("PeterPaulPartnership", peterPaulPartnership);
@@ -198,8 +201,8 @@ public class Exercises {
 //{"a", "b", "a", "c", "d", "z", "e", "f", "z"}
         for(String countWordStr : words) {  //for each countWordStr , go through the above array
             int count = 0;
-            for (String somethingHere : words) { //countWordStr : "a" count: 0
-                if(countWordStr.equals(somethingHere)) {
+            for (String wordToCount : words) { //countWordStr : "a" count: 0
+                if(countWordStr.equals(wordToCount)) {
                     count++;
                 }
             }
@@ -250,8 +253,8 @@ public class Exercises {
         for(String multiWordStr : words) {  //for each countWordStr , go through the above array
             int count = 0;
             boolean isMultiple = false;
-            for (String somethingHere : words) { //countWordStr : "a" count: 0
-                if(multiWordStr.equals(somethingHere)) {
+            for (String checkWord : words) { //countWordStr : "a" count: 0
+                if(multiWordStr.equals(checkWord)) {
                     count++;
                 }
             }
