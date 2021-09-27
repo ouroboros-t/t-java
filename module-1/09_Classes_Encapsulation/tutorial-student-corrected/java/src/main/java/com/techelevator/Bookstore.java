@@ -14,13 +14,13 @@ public class Bookstore {
         Book twoCities = new Book();//default constructor requires the setters and getters to be passed..
         twoCities.setTitleName("A Tale of Two Cities");
         twoCities.setAuthorName("Charles Dickens");
-        twoCities.setBookPrice(14.99);
+        twoCities.setBookPrice("14.99");
         System.out.println(twoCities.bookInfo());
         //calls bookInfo method...
 
         // Step Five: Test the Book constructor
-        Book threeMusketeers = new Book("The Three Musketeers", "Alexadre Dumas", 12.95);
-        Book childhoodEnd = new Book ("Childhood's End", "Arthur C. Clark", 5.99);
+        Book threeMusketeers = new Book("The Three Musketeers", "Alexadre Dumas", "12.95");
+        Book childhoodEnd = new Book ("Childhood's End", "Arthur C. Clark", "5.99");
         System.out.println(threeMusketeers.bookInfo());
         System.out.println(childhoodEnd.bookInfo());
 

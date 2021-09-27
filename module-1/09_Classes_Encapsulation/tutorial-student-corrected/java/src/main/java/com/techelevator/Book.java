@@ -1,5 +1,7 @@
 package com.techelevator;
 
+import java.math.BigDecimal;
+
 public class Book {
     //EXTRA: create an inventory static int:
     private static int bookInventory;
@@ -8,17 +10,18 @@ public class Book {
     //define class attributes/properties/instance variables
     private String titleName;
     private String authorName;
-    private double bookPrice;
+    private BigDecimal bookPrice;
 
     //create the default constructor
     public Book(){
         bookInventory++;
         //parameters are optional...
     }
-    public Book(String titleName, String authorName, double bookPrice) {
+    public Book(String titleName, String authorName, String bookPrice) {
         this.titleName = titleName;
         this.authorName = authorName;
-        this.bookPrice = bookPrice;
+        this.bookPrice = new BigDecimal(bookPrice);
+        //can pass a string through BigDecimal and number is made.
 
         bookInventory++;
     }
@@ -38,18 +41,18 @@ public class Book {
         this.authorName = authorName;
     }
 
-    public double getBookPrice() {
+    public BigDecimal getBookPrice() {
         return bookPrice;
     }
-    public void setBookPrice(double bookPrice){
-        this.bookPrice = bookPrice;
+    public void setBookPrice(String bookPrice){
+        this.bookPrice = new BigDecimal(bookPrice);
     }
     public static int getBookInventory() {
         return Book.bookInventory;
     }
 
     public String bookInfo() {
-        return "Title: " + titleName + ", Author: " + authorName + ", Price $" + bookPrice;
+        return "Title: " + titleName + ", Author: " + authorName + "\nPrice: $" + bookPrice;
     }
 
 }
