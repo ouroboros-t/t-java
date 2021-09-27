@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Auction {
+	//ALL classes extend java lang Object (big O) by default
 
 	private String itemForSale;
 	private Bid currentHighBid;
