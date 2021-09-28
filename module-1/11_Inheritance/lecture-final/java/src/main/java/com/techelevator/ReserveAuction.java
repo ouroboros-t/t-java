@@ -11,10 +11,10 @@ public class ReserveAuction extends Auction {
 
     @Override
     public boolean placeBid(Bid offeredBid) {
+        System.out.println("Received a bid for item " + getItemForSale());
         boolean isCurrentWinningBid = false;
         if (offeredBid.getBidAmount() >= reservePrice) {
-            isCurrentWinningBid = super.placeBid(offeredBid);
-        }
+            isCurrentWinningBid = super.placeBid(offeredBid); }
         return isCurrentWinningBid;
     }
 
