@@ -1,9 +1,9 @@
 package com.techelevator.farm;
 
-public class Chicken extends FarmAnimal {
+public class Chicken extends FarmAnimal{
 
 	public Chicken() {
-		super("Chicken", "cluck!");
+		super("Chicken", "cluck!", "800");
 	}
 
 	public void layEgg() {

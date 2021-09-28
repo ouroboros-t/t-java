@@ -1,9 +1,13 @@
 package com.techelevator.farm;
 
-public class Cow extends FarmAnimal {
+import java.math.BigDecimal;
 
+public class Cow extends FarmAnimal{
+	private BigDecimal price;
 	public Cow() {
-		super("Cow", "moo!");
+		super("Cow", "moo!", "1500");
 	}
+
+
 
 }
