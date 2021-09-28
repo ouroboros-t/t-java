@@ -13,6 +13,7 @@ public class FarmAnimal implements Singable, Sellable {
 		this.price = price;
 	}
 
+
 	@Override
 	public String getName() {
 		return name;
