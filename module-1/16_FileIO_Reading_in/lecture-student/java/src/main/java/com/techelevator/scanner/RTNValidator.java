@@ -16,13 +16,28 @@ public class RTNValidator {
 		try(Scanner fileScanner = new Scanner(inputFile)) {
 			while(fileScanner.hasNextLine()) {
 				String line = fileScanner.nextLine();
-				String rtn = line.substring(0, 9);
-				
-				if(checksumIsValid(rtn) == false) {
-					System.out.println(line);
-				}
+//				if(line.length() < 9) {
+//					System.out.println("Line too short error");
+//				} else {
+					String rtn = null;
+					try {
+						rtn = line.substring(0, 9);
+						if (checksumIsValid(rtn) == false) {
+							System.out.println(line);
+						}
+					} catch (NumberFormatException e) {
+						System.out.println("Error: " + rtn + " has non-numerics.");
+					} catch (StringIndexOutOfBoundsException e) {
+						System.out.println("ERROR: " + line + " is too short.");
+					}
+				//}
 			}
 		}
+
+		catch (FileNotFoundException e){
+			System.out.println("File "+ inputFile.getName() + " does not exist. Please check your entry and try again.");
+		}
+
 	}
 
 	private static void printApplicationBanner() {
@@ -39,13 +54,13 @@ public class RTNValidator {
 		String path = userInput.nextLine();
 		
 		File inputFile = new File(path);
-		if(inputFile.exists() == false) { // checks for the existence of a file
-			System.out.println(path+" does not exist");
-			System.exit(1); // Ends the program
-		} else if(inputFile.isFile() == false) {
-			System.out.println(path+" is not a file");
-			System.exit(1); // Ends the program
-		}
+//		if(inputFile.exists() == false) { // checks for the existence of a file
+//			System.out.println(path+" does not exist");
+//			System.exit(1); // Ends the program
+//		} else if(inputFile.isFile() == false) {
+//			System.out.println(path+" is not a file");
+//			System.exit(1); // Ends the program
+//		}
 		return inputFile;
 	}
 

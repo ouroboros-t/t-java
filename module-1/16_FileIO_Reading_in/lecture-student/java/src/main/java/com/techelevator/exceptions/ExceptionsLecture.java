@@ -14,18 +14,22 @@ public class ExceptionsLecture {
 		 * By using try/catch blocks, you can stop the Exception from exiting the method and provide
 		 * code to handle it. */
 		System.out.println("The following cities: ");
-		String[] cities = new String[] { "Cleveland", "Columbus", "Cincinatti" };
+		String[] cities = new String[] { "Cleveland", "Columbus", "Cincinnati" };
 		try {
+			//String x = null;
+			//System.out.print(x.length());
 			System.out.println(cities[0]);
 			System.out.println(cities[1]);
 			System.out.println(cities[2]);
-			System.out.println(cities[3]);  // This statement will throw an ArrayIndexOutOfBoundsException
+			//System.out.println(cities[3]);  // This statement will throw an ArrayIndexOutOfBoundsException
 			System.out.println("are all in Ohio."); // This line won't execute because the previous statement throws an Exception
 		} catch(ArrayIndexOutOfBoundsException e) {
 			// Flow of control resumes here after the Exception is thrown
-			System.out.println("XXX   Uh-oh, something went wrong...   XXX");
+			System.out.println("XXX   Uh-oh, something went wrong...   XXX - AIDOBE");
+		}catch(NullPointerException e){
+			System.out.println("NPE");
 		}
-		
+
 		System.out.println();
 		
 		/* try/catch blocks will also catch Exceptions that are thrown from method calls further down the stack */
@@ -64,7 +68,7 @@ public class ExceptionsLecture {
 			System.out.println(e.getMessage());
 		}
 		System.out.println();
-		
+
 		
 		/* The withdraw method can throw a checked exception (i.e. OverdraftException) so we need to catch it since
 		 * the main method does not declare that it throws any exceptions. */
@@ -78,7 +82,7 @@ public class ExceptionsLecture {
 			System.out.println("The requested amount would overdraw the account by "+e.getOverdraftAmount());
 		}
 		System.out.println();
-		
+
 		/* if we try to call the withdraw method outside of a try/catch, it will cause a compiler error */
 		//withdraw(currentBalance, amountToWithdraw);
 		
@@ -93,6 +97,7 @@ public class ExceptionsLecture {
 			e.printStackTrace(); // will print the Exception stacktrace to the terminal
 		}
 		System.out.println();
+		System.exit(0);
 	}
 	
 	/* this method does not need to declare that it throws an IllegalArgumentException because
