@@ -1,0 +1,12 @@
+
+apple
+banana
+lemon
+apple
+banana
+lemon
+pineapple
+apple
+banana
+lemon
+pineapple
