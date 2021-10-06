@@ -1,0 +1,6 @@
+apple
+avacado
+banana
+lemon
+mango
+orange
