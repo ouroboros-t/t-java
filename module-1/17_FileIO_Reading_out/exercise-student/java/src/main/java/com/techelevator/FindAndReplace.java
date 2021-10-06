@@ -49,34 +49,21 @@ public class FindAndReplace {
                 System.exit(0);
             }
             //do logic:
-            try(Scanner readSourceFile = new Scanner(sourceFile.getAbsoluteFile());
-                PrintWriter printWriterDestination = new PrintWriter(destinationFile.getAbsoluteFile())){
+            try (Scanner readSourceFile = new Scanner(sourceFile.getAbsoluteFile());
+                 PrintWriter printWriterDestination = new PrintWriter(destinationFile.getAbsoluteFile())) {
                 //take the search word
                 //take the replace word
                 //swap them
-                while(readSourceFile.hasNextLine()){
+                while (readSourceFile.hasNextLine()) {
                     String line = readSourceFile.nextLine();
-                    printWriterDestination.println(line.replaceAll(wordToSearch,replaceWord));
+                    printWriterDestination.println(line.replaceAll(wordToSearch, replaceWord));
                 }
             }
-
         } catch (FileNotFoundException e) {
             System.err.println(e.getMessage());
         }
 
-
-        //boolean is invalid...maybe make an entire repeatable program?
-        //nullpointer exception
-        //file i/o exception
-        //invalid argument exception
-        //taking user input file
-        //writing to a new file
-        //if inputfile doesn't exist
-        //if destination file doesn't exist
-        //variables for both maybe
-        //feeling weird today
-
-
     }
-
 }
+
+
