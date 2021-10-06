@@ -23,6 +23,7 @@ public class SearchEngine {
 	
 	public void indexFiles() throws SearchEngineException, Exception {
 		// Step Five: Index files
+		int fileID = 0;
 
 
 	}

@@ -1,5 +1,7 @@
 package com.techelevator.search;
 
+import com.techelevator.util.TELog;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -53,10 +55,19 @@ public class SearchDomain {
 	 */
 	private List<String> buildDomain() throws SearchDomainException {
 		List<String> files = new ArrayList<>();
-		// Step Three: Complete the buildDomain method
+		try {
+			File folderFile = new File(this.folder);
+			File[] filesArray = folderFile.listFiles();
+			//this creates an array of pathNames that we can then put in our list for each file.
+			for (File file : filesArray) {
+				String fileName = file.getAbsolutePath();
+				TELog.log("Found file: " + fileName);
+				files.add(fileName);
+			}
+		} catch (NullPointerException e){
+			throw new SearchDomainException(e.getMessage());
+		}
 
-
-			
 		return files;
 	}
 	
