@@ -30,7 +30,7 @@ public class SearchEngine {
 	
 	public List<String> search(String searchString) {
 		List<String> rankedFiles = new ArrayList<>();
-		String[] searchWords = searchString.trim().toLowerCase().split(" ");
+		String[] searchWcdords = searchString.trim().toLowerCase().split(" ");
 		if (searchWords.length > 0) {
 			if (searchWords.length == 1) {
 				// Only one word to search, find all files that contain it
