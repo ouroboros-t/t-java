@@ -23,9 +23,10 @@ COMMIT;
 
 
 
-SELECT m.title FROM movie AS m WHERE collection_id = (SELECT collection_id FROM collection WHERE collection_name = 'Bill Murray Collection');
+SELECT m.title FROM movie AS m WHERE collection_id IN (SELECT collection_id FROM collection WHERE collection_name = 'Bill Murray Collection');
 
---AS m JOIN collection AS c ON m.collection_id = c.collection_id  WHERE collection_name IN ('Bill Murray Collection');
+
+
 
 
 
