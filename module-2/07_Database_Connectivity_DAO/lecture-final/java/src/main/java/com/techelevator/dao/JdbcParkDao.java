@@ -1,10 +1,12 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Park;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 import javax.sql.DataSource;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,21 +57,36 @@ public class JdbcParkDao implements ParkDao {
                 park.getParkName(), park.getDateEstablished(), park.getArea(), park.getHasCamping());
 
         //park.setParkId(newParkId);
+        //return park;
+
         return getPark(newParkId);
     }
 
     @Override
     public void updatePark(Park park) {
-
+        String sql = "UPDATE park SET park_name = ?, date_established = ?, area = ?, has_camping = ?" +
+                " WHERE park_id = ?;";
+        jdbcTemplate.update(sql, park.getParkName(), park.getDateEstablished(),
+                park.getArea(), park.getHasCamping(), park.getParkId());
     }
 
     @Override
     public void deletePark(long parkId) {
+        String sql = "DELETE FROM park WHERE park_id = ?";
+        try {
+            int numRowsAffected = jdbcTemplate.update(sql, parkId);
 
+            if (numRowsAffected == 0) {
+                System.err.println("deletePark called with invalid parkId " + parkId);
+            }
+        }
+        catch (DataIntegrityViolationException e) {
+            System.out.println("Error deleting park");
+        }
     }
 
     @Override
-    public void addParkToState(long parkId, String stateAbbreviation) {
+    public void addParkToState(long parkId, String stateAbbr3eviation) {
 
     }
 
@@ -83,9 +100,20 @@ public class JdbcParkDao implements ParkDao {
 
         park.setParkId(rowSet.getLong("park_id"));
         park.setParkName(rowSet.getString("park_name"));
-        park.setDateEstablished(rowSet.getDate("date_established").toLocalDate());
+
+        //park.setDateEstablished(rowSet.getDate("date_established").toLocalDate());
+        // If value may be null have to use code like this
+        Date dateEstablishedFromDb = rowSet.getDate("date_established");
+        if (dateEstablishedFromDb != null) {
+            park.setDateEstablished(dateEstablishedFromDb.toLocalDate());
+        } else {
+            park.setDateEstablished(null);
+        }
         park.setArea(rowSet.getDouble("area"));
         park.setHasCamping(rowSet.getBoolean("has_camping"));
+
+        // Required to fully qualify because java.sql.Date has been imported
+        // java.util.Date now = new java.util.Date();
 
         return park;
     }
