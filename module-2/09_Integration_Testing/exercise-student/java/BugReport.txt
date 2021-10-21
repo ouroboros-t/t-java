@@ -1,43 +1,64 @@
 Bug 1
 -----
 Test that demonstrates problem:
+List<Timesheet> getTimesheetsByEmployeeId(Long employeeId);
 
 Expected output:
+Assert.assertEquals(2,timesheets.size()) should return true;
+
 
 Actual output:
+Assert.assertEquals(2,timesheets.size()) returned false, as actual output was 1.
 
 How did you fix this bug?
-
+in the getTimesheetsByEmployeeId method, there's an if(results.next()) instead of while(results.next()),
+replacing "if" with "while" fixed the error.
 
 Bug 2
 -----
 Test that demonstrates problem:
+getTimesheetsByProjectId_returns_list_of_all_timesheets_for_project
 
 Expected output:
+size of List<Timesheet> should be 3.
+
 
 Actual output:
+size of List<Timesheet> returns 2.
 
 How did you fix this bug?
+
+Select statement in method has the WHERE condition state employee_id, instead of project_id.
+
 
 
 Bug 3
 -----
 Test that demonstrates problem:
+updated_timesheet_has_expected_values_when_retrieved
 
 Expected output:
 
+assertTimesheetsMatch(timesheetToUpdate,retrieveTimesheet) to return true because their values match.
+
 Actual output:
+assertTimesheetsMatch(timesheetToUpdate,retrieveTimesheet) returned false, because in the update method,
+there is no parameter for billable to be updated/set.
+
 
 How did you fix this bug?
-
+added billable parameter to update method.
 
 Bug 4
 -----
 Test that demonstrates problem:
-
+getBillableHours_returns_correct_total
 Expected output:
+getBillableHours(2L,2L) return 0 hours because billable is false
 
 Actual output:
+getBillableHours(2L,2L) return 2.0 because method originally did not account for billable being true/false.
 
 How did you fix this bug?
+Added billable = true to WHERE clause.
 
