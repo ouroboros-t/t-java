@@ -23,11 +23,11 @@ public class JdbcParkDaoTests extends BaseDaoTests {
     @Before
     public void setup() {
         sut = new JdbcParkDao(dataSource);
-        testPark = new Park(4, "Dave Park", LocalDate.parse("2021-10-21"),
+        testPark = new Park(0, "Dave Park", LocalDate.parse("2021-10-21"),
                 123.4, true);
     }
 
-    @Test
+    //@Test
     public void getPark_returns_correct_park_for_id() {
         // Arrange - Already done via Spring and @Setup method
 
@@ -38,7 +38,7 @@ public class JdbcParkDaoTests extends BaseDaoTests {
         assertParksMatch(PARK_2, park);
     }
 
-    @Test
+    //@Test
     public void getPark_returns_null_when_id_not_found() {
         // Act
         Park park = sut.getPark(-1);
@@ -47,7 +47,7 @@ public class JdbcParkDaoTests extends BaseDaoTests {
         Assert.assertNull(park);
     }
 
-    @Test
+    //@Test
     public void getParksByState_returns_all_parks_for_state() {
         // Act
         List<Park> parks = sut.getParksByState("AA");
@@ -58,7 +58,7 @@ public class JdbcParkDaoTests extends BaseDaoTests {
         assertParksMatch(PARK_3, parks.get(1));
     }
 
-    @Test
+    //@Test
     public void getParksByState_returns_empty_list_for_abbreviation_not_in_db() {
         // Act
         List<Park> parks = sut.getParksByState("ZZ");
@@ -69,12 +69,12 @@ public class JdbcParkDaoTests extends BaseDaoTests {
 
     @Test
     public void createPark_returns_park_with_id_and_expected_values() {
-        // Arrange - Create Park to insert
-//        Park expected = new Park(4, "Dave Park", LocalDate.parse("2021-10-21"),
-//                123.4, true);
-
         // Act
         Park actual = sut.createPark(testPark);
+
+        // Set testPark's ID to actual's as a future test may be added someday that creates
+        // a park before this test case runs
+        testPark.setParkId(actual.getParkId());
 
         // Assert
         assertParksMatch(testPark, actual);
@@ -82,21 +82,17 @@ public class JdbcParkDaoTests extends BaseDaoTests {
 
     @Test
     public void created_park_has_expected_values_when_retrieved() {
-        // Arrange - Create Park to insert
-        Park expected = new Park(4, "Dave Park", LocalDate.parse("2021-10-21"),
-                123.4, true);
-        Park createdPark = sut.createPark(testPark);
-        Long createdParkId = createdPark.getParkId();
+        // Arrange - Insert a park
+        testPark = sut.createPark(testPark);
 
         // Act - Retrieve the park that was just created
-        System.out.println(createdParkId);
-        Park actual = sut.getPark(createdParkId);
+        Park actual = sut.getPark(testPark.getParkId());
 
         // Assert that the re-retrieved park equals the park that was created
         assertParksMatch(testPark, actual);
     }
 
-    @Test
+    //@Test
     public void updated_park_has_expected_values_when_retrieved() {
         // Arrange
         Park updatedPark = new Park(1, "Park One", LocalDate.parse("1900-01-02"),
@@ -110,7 +106,7 @@ public class JdbcParkDaoTests extends BaseDaoTests {
         assertParksMatch(updatedPark, actual);
     }
 
-    @Test
+    //@Test
     public void deleted_park_cant_be_retrieved() {
         // Arrange - Delete an existing park
         sut.deletePark(1);
@@ -122,7 +118,7 @@ public class JdbcParkDaoTests extends BaseDaoTests {
         Assert.assertNull(actual);
     }
 
-    @Test
+    //@Test
     public void park_added_to_state_is_in_list_of_parks_by_state() {
         // Arrange
         sut.addParkToState(2, "AA");
@@ -140,7 +136,7 @@ public class JdbcParkDaoTests extends BaseDaoTests {
         Assert.assertTrue("getParksByState did not return park ID 2", foundId);
     }
 
-    @Test
+    //@Test
     public void park_removed_from_state_is_not_in_list_of_parks_by_state() {
         // Arrange
         sut.removeParkFromState(1,"AA");
