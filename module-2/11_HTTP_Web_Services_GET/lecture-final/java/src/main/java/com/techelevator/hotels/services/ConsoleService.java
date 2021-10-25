@@ -27,7 +27,7 @@ public class ConsoleService {
         System.out.println("2: List Reviews");
         System.out.println("3: Show Details for Hotel ID 1");
         System.out.println("4: List Reviews for Hotel ID 1");
-        System.out.println("5: List Hotels with star rating 3");
+        System.out.println("5: List Hotels with 4 or more stars");
         System.out.println("6: Public API Query");
         System.out.println("0: Exit");
         System.out.println();
