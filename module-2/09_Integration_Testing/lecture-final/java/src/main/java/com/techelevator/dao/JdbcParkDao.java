@@ -51,6 +51,11 @@ public class JdbcParkDao implements ParkDao {
         Long newId = jdbcTemplate.queryForObject(sql, Long.class,
                 park.getParkName(), park.getDateEstablished(), park.getArea(), park.getHasCamping());
 
+        System.out.println(Thread.currentThread().getId() + ": Created park with ID " + newId);
+        StackTraceElement[] stes = Thread.getAllStackTraces().get(Thread.currentThread());
+        for (int i = 0; i < stes.length && i < 4; ++i) {
+            System.out.println(stes[i].getMethodName());
+        }
         return getPark(newId);
     }
 
