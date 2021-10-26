@@ -25,7 +25,9 @@ public class HotelService {
     }
 
     public Hotel getHotelById(int id) {
-        return null;
+        String url = API_BASE_URL + "hotels/" + id;
+        Hotel hotel = restTemplate.getForObject(url, Hotel.class);
+        return hotel;
     }
 
     public Review[] getReviewsByHotelId(int hotelID) {
@@ -34,11 +36,17 @@ public class HotelService {
     }
 
     public Hotel[] getHotelsByStarRating(int stars) {
-        return null;
+        // Add _gte for "greater than or equal"
+        // Add _lte for "less than or equal"
+        String url = API_BASE_URL + "hotels?stars_gte=" + stars;
+        Hotel[] hotels = restTemplate.getForObject(url, Hotel[].class);
+        return hotels;
     }
 
     public City getWithCustomQuery(){
-        return null;
+        String url = "https://api.teleport.org/api/cities/geonameid:4517586/";
+        City marietta = restTemplate.getForObject(url, City.class);
+        return marietta;
     }
 
 }

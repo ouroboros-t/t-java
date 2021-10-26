@@ -1,5 +1,6 @@
 package com.techelevator.hotels;
 
+import com.techelevator.hotels.model.City;
 import com.techelevator.hotels.model.Hotel;
 import com.techelevator.hotels.services.ConsoleService;
 import com.techelevator.hotels.services.HotelService;
@@ -28,18 +29,18 @@ public class App {
                 //System.out.println("Not implemented");
                 consoleService.printReviews(hotelService.listReviews());
             } else if (menuSelection == 3) {
-                System.out.println("Not implemented");
+                //System.out.println("Not implemented");
+                consoleService.printHotel(hotelService.getHotelById(1));
             } else if (menuSelection == 4) {
                 //System.out.println("Not implemented");
                 consoleService.printReviews(hotelService.getReviewsByHotelId(1));
             } else if (menuSelection == 5) {
-                System.out.println("Not implemented");
+                //System.out.println("Not implemented");
+                consoleService.printHotels(hotelService.getHotelsByStarRating(4));
             } else if (menuSelection == 6) {
-                System.out.println("Not implemented - Create a custom Web API query here");
-            } else if (menuSelection == 0) {
-                continue;
-            } else {
-                System.out.println("Invalid Selection");
+                //System.out.println("Not implemented - Create a custom Web API query here");
+                City city = hotelService.getWithCustomQuery();
+                System.out.println(city);
             }
             consoleService.pause();
         }
