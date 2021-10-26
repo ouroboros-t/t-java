@@ -3,6 +3,9 @@ package com.techelevator.hotels.services;
 import com.techelevator.hotels.model.Hotel;
 import com.techelevator.hotels.model.Reservation;
 import com.techelevator.util.BasicLogger;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.client.RestTemplate;
@@ -17,7 +20,20 @@ public class HotelService {
      * Create a new reservation in the hotel reservation system
      */
     public Reservation addReservation(Reservation newReservation) {
-        // TODO: Implement method
+        //we want the spring framework headers..
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        try {
+            HttpEntity<Reservation> httpEntity = new HttpEntity<Reservation>(newReservation, headers);
+            //payload (body) and headers combined same way in POSTman.
+          return restTemplate.postForObject(API_BASE_URL + "reservations", httpEntity, Reservation.class);
+        }catch (RestClientResponseException e) {
+            // handles exceptions thrown by rest template and contains status codes
+            BasicLogger.log(e.getRawStatusCode() + " : " + e.getStatusText());
+        } catch (ResourceAccessException e) {
+            // i/o error, ex: the server isn't running
+            BasicLogger.log(e.getMessage());
+        }
         return null;
     }
 
@@ -26,7 +42,26 @@ public class HotelService {
      * reservation
      */
     public boolean updateReservation(Reservation updatedReservation) {
-        // TODO: Implement method
+        //there's no native "put" method in Spring rest
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        try{
+            HttpEntity<Reservation> httpEntity= new HttpEntity<>(updatedReservation,headers);
+            //where does this entity get sent to? create a url for the destination
+            String url = API_BASE_URL + "reservations" + "/" + updatedReservation.getId();
+
+            //put url destination, and entity to be updated:
+            restTemplate.put(url, httpEntity);
+
+            //if made it here no exception thrown all good.
+            return true;
+
+        }catch(RestClientResponseException e){
+            BasicLogger.log("Client error updating reservation " + e.getStatusText());
+        }catch(ResourceAccessException e){
+            BasicLogger.log("I/O Error updating reservation " + e.getMessage());
+        }
         return false;
     }
 
@@ -34,7 +69,15 @@ public class HotelService {
      * Delete an existing reservation
      */
     public boolean deleteReservation(int id) {
-        // TODO: Implement method
+        String url = API_BASE_URL + "reservations/" + id;
+        try{
+            restTemplate.delete(url);
+            return true;
+        } catch(RestClientResponseException e){
+            BasicLogger.log("Client error updating reservation " + e.getStatusText());
+        }catch(ResourceAccessException e){
+            BasicLogger.log("I/O Error updating reservation " + e.getMessage());
+        }
         return false;
     }
 
