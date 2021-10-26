@@ -17,17 +17,56 @@ public class AuctionService {
 
 
     public Auction add(Auction newAuction) {
-        // place code here
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        try{
+            HttpEntity<Auction> httpEntity = new HttpEntity<>(newAuction,headers);
+            String url = API_BASE_URL;
+            return restTemplate.postForObject(url, httpEntity, Auction.class);
+        } catch (RestClientResponseException e) {
+            // handles exceptions thrown by rest template and contains status codes
+            BasicLogger.log(e.getRawStatusCode() + " : " + e.getStatusText());
+        } catch (ResourceAccessException e) {
+            // i/o error, ex: the server isn't running
+            BasicLogger.log(e.getMessage());
+        }
         return null;
     }
 
     public boolean update(Auction updatedAuction) {
-        // place code here
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+
+        try{
+           HttpEntity<Auction> httpEntity = new HttpEntity<>(updatedAuction,headers);
+           String url = API_BASE_URL + updatedAuction.getId();
+           restTemplate.put(url,httpEntity);
+            return true;
+        } catch (RestClientResponseException e) {
+            // handles exceptions thrown by rest template and contains status codes
+            BasicLogger.log(e.getRawStatusCode() + " : " + e.getStatusText());
+        } catch (ResourceAccessException e) {
+            // i/o error, ex: the server isn't running
+            BasicLogger.log(e.getMessage());
+        }
         return false;
     }
 
     public boolean delete(int auctionId) {
-        // place code here
+        String url = API_BASE_URL + auctionId;
+
+        try{
+            restTemplate.delete(url);
+            return true;
+        } catch (RestClientResponseException e) {
+            // handles exceptions thrown by rest template and contains status codes
+            BasicLogger.log(e.getRawStatusCode() + " : " + e.getStatusText());
+        } catch (ResourceAccessException e) {
+            // i/o error, ex: the server isn't running
+            BasicLogger.log(e.getMessage());
+        }
         return false;
     }
 
