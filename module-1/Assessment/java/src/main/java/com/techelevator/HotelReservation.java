@@ -3,10 +3,11 @@ package com.techelevator;
 //nothing is working. don't know why. math isn't working. always goes to 0.
 public class HotelReservation {
     private String name;
-    private String numberOfNights;
-    private double estimatedTotal;
-    private boolean requiresCleaning = false;
-    private boolean usedMiniBar = false;
+    private int numberOfNights;
+    public static final double DAILY_RATE = 59.99;
+    public static final double CLEANING_FEE = 34.99;
+    public static final double MINIBAR_FEE = 12.99;
+
 
 
     public HotelReservation() {
@@ -14,7 +15,7 @@ public class HotelReservation {
     }
 
 
-    public HotelReservation(String name, String numberOfNights){
+    public HotelReservation(String name, int numberOfNights){
         this.name = name;
         this.numberOfNights = numberOfNights;
     }
@@ -23,72 +24,44 @@ public class HotelReservation {
         return name;
     }
 
-    public String getNumberOfNights() {
+    public int getNumberOfNights() {
         return numberOfNights;
     }
 
     public double getEstimatedTotal() {
-        return estimatedTotal * Double.parseDouble(numberOfNights);
+        return numberOfNights * DAILY_RATE;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setNumberOfNights(String numberOfNights) {
+    public void setNumberOfNights(int numberOfNights) {
         this.numberOfNights = numberOfNights;
     }
 
-    public void setEstimatedTotal(double estimatedTotal) {
-        this.estimatedTotal = estimatedTotal;
-    }
 
-    public boolean isRequiresCleaning() {
-        return requiresCleaning;
-    }
+    public double totalFee(boolean requiresCleaning, boolean usedMiniBar){
+        double roomFee = getEstimatedTotal();
 
-    public void setRequiresCleaning(boolean requiresCleaning) {
-        this.requiresCleaning = requiresCleaning;
-    }
-
-    public boolean hasUsedMiniBar() {
-        return usedMiniBar;
-    }
-
-    public void setUsedMiniBar(boolean usedMiniBar) {
-        this.usedMiniBar = usedMiniBar;
-    }
-
-    public double totalPerNight(double estimatedTotal){
-        double roomFee = estimatedTotal;
-        double newRoomFee = 0;
-        double cleaningFee = 34.99;
-        double minibarFee =12.99;
         if(requiresCleaning && usedMiniBar){
-            double newCleaningFee = cleaningFee * 2;
-            newRoomFee = roomFee + newCleaningFee;
+            double newCleaningFee = CLEANING_FEE * 2;
+            roomFee += newCleaningFee;
 
-            newRoomFee = roomFee + minibarFee ;
+            roomFee += MINIBAR_FEE ;
         } else if (!usedMiniBar && requiresCleaning) {
-           newRoomFee = roomFee + cleaningFee;
+           roomFee+= CLEANING_FEE;
         } else if (usedMiniBar){
-            newRoomFee = roomFee + minibarFee;
+            roomFee+= MINIBAR_FEE;
         }
 
-        estimatedTotal = newRoomFee;
-
-        return estimatedTotal;
+        return roomFee;
     }
 
-    public double completeTotal(String numberOfNights){
-        double nightsDouble = Double.parseDouble(numberOfNights);
-        double completeTotal = estimatedTotal * nightsDouble;
-        return completeTotal;
-    }
 
     @Override
     public String toString() {
-        return "RESERVATION - " + getName() + " - " + completeTotal(numberOfNights);
+        return "RESERVATION - " + getName() + " - " + getEstimatedTotal();
 
     }
 }

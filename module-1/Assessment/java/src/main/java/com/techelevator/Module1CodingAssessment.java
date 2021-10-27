@@ -17,22 +17,25 @@ public class Module1CodingAssessment {
 				String[] reservationParts = line.split(", ");
 				HotelReservation singleReservation = new HotelReservation();
 				singleReservation.setName(reservationParts[0]);
-				singleReservation.setNumberOfNights(reservationParts[1]);
+				int numNightsAsInt = Integer.parseInt(reservationParts[1]);
+				singleReservation.setNumberOfNights(numNightsAsInt);
 				reservationList.add(singleReservation);
-				System.out.println(reservationParts[1]);
+				//System.out.println(numNightsAsInt);
 
 			}
 
 		} catch(FileNotFoundException e){
 			throw e;
 		}
+		double grandTotal = 0.0;
 		for(HotelReservation reservation : reservationList){
-				reservation.totalPerNight(reservation.getEstimatedTotal());
-				reservation.completeTotal(reservation.getNumberOfNights());
-			System.out.println("Your total is: " + reservation.getEstimatedTotal());
+				grandTotal += reservation.getEstimatedTotal();
+//				reservation.totalPerNight(reservation.getEstimatedTotal());
+//				reservation.completeTotal(reservation.getNumberOfNights());
+			//System.out.println("Your total is: " + reservation.getEstimatedTotal());
 
-			System.out.println(reservation.toString());
+			System.out.println(reservation);
 		}
-
+		System.out.println("Grand Total is: " + grandTotal);
 	}
 }
