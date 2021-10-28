@@ -66,6 +66,15 @@ public class HotelController {
     }
 
     /**
+     * Delete reservation by its id
+     */
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping(path= "/reservations/{id}")
+    public void deleteReservation(@PathVariable int id) throws ReservationNotFoundException {
+        reservationDao.delete(id);
+    }
+
+    /**
      * List of reservations by hotel
      *
      * @param hotelID

@@ -1,9 +1,19 @@
 package com.techelevator.reservations.model;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
+
 public class Reservation {
 
+
     private int id;
+
+    @Positive(message = "Hotel id must be a positive number.")
     private int hotelID;
+
+    @NotBlank(message = "Full name must be filled out.")
+    @Size(min=3,max=50, message = "Name field must be in between 3-40 characters.")
     private String fullName;
     private String checkinDate;
     private String checkoutDate;
