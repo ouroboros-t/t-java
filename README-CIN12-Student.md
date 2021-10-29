@@ -1,5 +1,6 @@
 # 14-week Full-Stack Bootcamp Curriculum
 
+
 This repository will eventually contain all the modules for Tech Elevator's 14-week, full-stack web development bootcamp curriculum.
 
 Inside each module, a folder for each day of the module will be created. Inside that day, you'll find the following folder structure:
