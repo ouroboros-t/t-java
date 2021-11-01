@@ -1,6 +1,8 @@
 package com.techelevator.reservations.controllers;
 
 import com.techelevator.reservations.dao.HotelDao;
+import com.techelevator.reservations.dao.MemoryHotelDao;
+import com.techelevator.reservations.dao.MemoryReservationDao;
 import com.techelevator.reservations.dao.ReservationDao;
 import com.techelevator.reservations.exception.HotelNotFoundException;
 import com.techelevator.reservations.exception.ReservationNotFoundException;
@@ -9,7 +11,6 @@ import com.techelevator.reservations.model.Reservation;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import javax.sql.DataSource;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,12 +20,10 @@ public class HotelController {
 
     private HotelDao hotelDao;
     private ReservationDao reservationDao;
-    private DataSource campgrounDataSource;
 
-    public HotelController(HotelDao hotelDao, ReservationDao reservationDao, DataSource campgroundDataSource) {
-        this.hotelDao = hotelDao;
-        this.reservationDao = reservationDao;
-        this.campgrounDataSource = campgroundDataSource;
+    public HotelController() {
+        this.hotelDao = new MemoryHotelDao();
+        this.reservationDao = new MemoryReservationDao(hotelDao);
     }
 
     /**
@@ -70,15 +69,6 @@ public class HotelController {
     }
 
     /**
-     * Delete a reservation by its id
-     */
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping(path = "/reservations/{id}")
-    public void deleteReservation(@PathVariable int id) throws ReservationNotFoundException {
-        reservationDao.delete(id);
-    }
-
-    /**
      * List of reservations by hotel
      *
      * @param hotelID
@@ -93,14 +83,38 @@ public class HotelController {
      * Create a new reservation for a given hotel
      *
      * @param reservation
-     * @param hotelID
      */
     @ResponseStatus(HttpStatus.CREATED)
-    //@RequestMapping(path = "/hotels/{id}/reservations", method = RequestMethod.POST)
-    @PostMapping("/hotels/{id}/reservations")
-    public Reservation addReservation(@Valid @RequestBody Reservation reservation, @PathVariable("id") int hotelID)
-            throws HotelNotFoundException {
-        return reservationDao.create(reservation, hotelID);
+    @RequestMapping( path = "/reservations", method = RequestMethod.POST)
+    public Reservation addReservation(@Valid @RequestBody Reservation reservation) throws HotelNotFoundException {
+        return reservationDao.create(reservation, reservation.getHotelID());
+    }
+
+    /**
+     * Updates a reservation
+     *
+     * @param reservation
+     * @param id
+     * @return the updated Reservation
+     * @throws ReservationNotFoundException
+     */
+    @RequestMapping(path = "/reservations/{id}", method = RequestMethod.PUT)
+    public Reservation update(@Valid @RequestBody Reservation reservation, @PathVariable int id)
+            throws ReservationNotFoundException {
+        return reservationDao.update(reservation, id);
+    }
+
+    /**
+     * Delete a reservation by id
+     *
+     * @param id
+     * @throws ReservationNotFoundException
+     */
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @RequestMapping(path = "/reservations/{id}", method = RequestMethod.DELETE)
+    public void delete(@PathVariable int id) throws ReservationNotFoundException {
+        auditLog("delete", id, "username");
+        reservationDao.delete(id);
     }
 
     /**
@@ -111,7 +125,7 @@ public class HotelController {
      * @return a list of hotels that match the city & state
      */
     @RequestMapping(path = "/hotels/filter", method = RequestMethod.GET)
-    public List<Hotel> filterByStateAndCity(@RequestParam String state, @RequestParam(defaultValue = "#NOT_SET#") String city) {
+    public List<Hotel> filterByStateAndCity(@RequestParam String state, @RequestParam(required = false) String city) {
 
         List<Hotel> filteredHotels = new ArrayList<>();
         List<Hotel> hotels = list();
@@ -120,7 +134,7 @@ public class HotelController {
         for (Hotel hotel : hotels) {
 
             // if city was passed we don't care about the state filter
-            if (city.equals("#NOT_SET#")) {
+            if (city != null) {
                 if (hotel.getAddress().getCity().toLowerCase().equals(city.toLowerCase())) {
                     filteredHotels.add(hotel);
                 }
@@ -133,6 +147,18 @@ public class HotelController {
         }
 
         return filteredHotels;
+    }
+
+    /**
+     * Used to log operations
+     * 
+     * @param operation
+     * @param reservation
+     * @param username
+     */
+    private void auditLog(String operation, int reservation, String username) {
+        System.out.println(
+                "User: " + username + "performed the operation: " + operation + "on reservation: " + reservation);
     }
 
 }
