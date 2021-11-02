@@ -9,8 +9,9 @@ public class Hotel {
     private int roomsAvailable;
     private double costPerNight;
     private String coverImage;
+    private String createdByUser;
 
-    public Hotel(int id, String name, Address address, int stars, int roomsAvailable, double costPerNight) {
+    public Hotel(int id, String name, Address address, int stars, int roomsAvailable, double costPerNight, String createdByUser) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -18,6 +19,7 @@ public class Hotel {
         this.roomsAvailable = roomsAvailable;
         this.costPerNight = costPerNight;
         this.coverImage = "default-cover-image.png";
+        this.createdByUser = createdByUser;
     }
 
     @Override
@@ -67,5 +69,9 @@ public class Hotel {
 
     public void setCostPerNight(double costPerNight) {
         this.costPerNight = costPerNight;
+    }
+
+    public String getCreatedByUser() {
+        return createdByUser;
     }
 }

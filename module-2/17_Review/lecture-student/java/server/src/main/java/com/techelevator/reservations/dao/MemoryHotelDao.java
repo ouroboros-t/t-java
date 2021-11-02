@@ -48,36 +48,36 @@ public class MemoryHotelDao implements HotelDao {
                 "Aloft Cleveland",
                 new Address("1111 W 10th St","","Cleveland","Ohio","44115"),
                 4,
-                48,274));
+                48,274, "han"));
         hotels.add(new Hotel(2,
                 "Hilton Cleveland Downtown",
                 new Address("100 Lakeside Ave","","Cleveland","Ohio","44114"),
                 4,
-                12,287));
+                12,287, "luke"));
         hotels.add(new Hotel(3,
                 "Metropolitan at the 9",
                 new Address("2017 E 9th St","","Cleveland","Ohio","48226"),
                 5,
-                22,319));
+                22,319, "luke"));
         hotels.add(new Hotel(4,
                 "The Westin Pittsburgh",
                 new Address("1000 Penn Ave","","Pittsburgh","Pennsylvania","15222"),
                 4,
-                60,131));
+                60,131, "leia"));
         hotels.add(new Hotel(5,
                 "Hilton Columbus Downtown",
                 new Address("401 N High St","","Columbus","Ohio","43215"),
                 4,
-                34,190));
+                34,190, "han"));
         hotels.add(new Hotel(6,
                 "The Summit A Dolce Hotel",
                 new Address("5345 Medpace Way","","Cincinnati","Ohio","43215"),
                 4,
-                43,218));
+                43,218, "leia"));
         hotels.add(new Hotel(7,
                 "Greektown Detroit",
                 new Address("1200 St Antoine St","","Detroit","Michigan","48226"),
                 4,
-                75,185));
+                75,185, "luke"));
     }
 }
