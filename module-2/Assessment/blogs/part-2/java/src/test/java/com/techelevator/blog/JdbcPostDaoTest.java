@@ -87,6 +87,7 @@ public class JdbcPostDaoTest {
 
 	@Test
 	public void testGetCartDetailsInAllCarts() {
+		template.update("DELETE FROM comments");
 		template.update("DELETE FROM posts");
 
 		dao.save(new Post("TESTNAME", "TESTCOOKIE", true, LocalDate.ofEpochDay(101)));
