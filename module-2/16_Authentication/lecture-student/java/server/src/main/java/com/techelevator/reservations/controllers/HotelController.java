@@ -9,12 +9,15 @@ import com.techelevator.reservations.exception.ReservationNotFoundException;
 import com.techelevator.reservations.model.Hotel;
 import com.techelevator.reservations.model.Reservation;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
+@PreAuthorize("isAuthenticated()") //this allows it to be applied to entire class..
 @RestController
 public class HotelController {
 
@@ -31,6 +34,7 @@ public class HotelController {
      *
      * @return a list of all hotels in the system
      */
+    @PreAuthorize("permitAll")
     @RequestMapping(path = "/hotels", method = RequestMethod.GET)
     public List<Hotel> list() {
         return hotelDao.list();
@@ -63,6 +67,7 @@ public class HotelController {
      * @param id
      * @return a single reservation
      */
+
     @RequestMapping(path = "reservations/{id}", method = RequestMethod.GET)
     public Reservation getReservation(@PathVariable int id) throws ReservationNotFoundException {
         return reservationDao.get(id);
@@ -110,10 +115,11 @@ public class HotelController {
      * @param id
      * @throws ReservationNotFoundException
      */
+    @PreAuthorize("hasRole('ADMIN')")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @RequestMapping(path = "/reservations/{id}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable int id) throws ReservationNotFoundException {
-        auditLog("delete", id, "username");
+    public void delete(@PathVariable int id, Principal user) throws ReservationNotFoundException {
+        auditLog("delete", id, user.getName());
         reservationDao.delete(id);
     }
 

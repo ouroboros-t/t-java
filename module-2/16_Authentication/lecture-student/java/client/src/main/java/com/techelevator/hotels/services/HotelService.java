@@ -25,8 +25,23 @@ public class HotelService {
     public Reservation addReservation(Reservation newReservation) {
         Reservation returnedReservation = null;
 
-        //TODO: Add implementation
-        BasicLogger.log("HotelService.addReservation() has not been implemented");
+        //the headers are already made in the makeReservationEntity method (DRY principle)
+        //BasicLogger.log("HotelService.addReservation() has not been implemented");
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setBearerAuth(authToken);
+
+        //create object that contains payload and headers:
+        HttpEntity<Reservation> httpEntity = new HttpEntity<Reservation>(newReservation,headers);
+
+        //make the body:
+        ResponseEntity<Reservation> response = restTemplate.exchange(API_BASE_URL + "reservations",HttpMethod.POST,httpEntity,Reservation.class);
+
+        //get the body:
+        returnedReservation = response.getBody();
+
+        //we have to use exchange and pass in an entity because postforobject is expecting path variables (so don't use code below)
+        //returnedReservation = restTemplate.postForObject(API_BASE_URL + "reservations", newReservation, Reservation.class);
 
         return returnedReservation;
     }
