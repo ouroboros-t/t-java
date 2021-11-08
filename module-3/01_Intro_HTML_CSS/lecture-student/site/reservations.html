@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make Reservation</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <header>
+        <h1>Bits & Bytes</h1>
+        <p>Welcome to the internet's best restaurant!</p>
+    </header>
+    <nav>
+        <a href="index.html">Return to Menu</a>
+    </nav>
+    <main>
+        <form action="http://www.example.com/reservation" method="POST">
+            <div>
+                <label for="partyNameId">Name:</label>
+                <input type="text" id="partyNameId" name="partyName" />
+            </div>
+            <div>
+                <label for="partySizeId">Number in Party:</label>
+                <input type="number" id="partySizeId" name="partySize" />
+            </div>
+            <div>
+                <label for="reservationDateId">Date:</label>
+                <input type="date" id="reservationDateId" name="reservationDate" />
+            </div>
+            <div>
+                <input type="checkbox" id="specialOccasionId" name="specialOccasion" />
+                <label for="specialOccasionId">Special Occasion?</label>
+            </div>
+            <div>
+                <input type="submit" />
+                <!--a button that allows us to send to the specified endpoint (example.com)-->
+            </div>
+            <div>
+                <textarea name="someText"></textarea>
+            </div>
+
+        </form>
+    </main>
+</body>
+
+</html>
