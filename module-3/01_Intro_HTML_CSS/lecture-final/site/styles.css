@@ -1,0 +1,13 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+img {
+    height: 200px;
+}
+
+h1 {
+    color: cornflowerblue;
+    font-weight: bold;
+    text-decoration: underline;
+}
