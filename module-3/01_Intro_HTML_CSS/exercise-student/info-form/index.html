@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Info Form</title>
+    <link rel="stylesheet" href="ifstylesheet.css" />
+</head>
+
+<body>
+    <h1>Tell us about you!</h1>
+    <main>
+        <form action="http://www.example.com/info" method="POST">
+            <div>
+                <label for="NameId">Name:</label>
+                <input type="text" id="NameId" name="Name" />
+            </div>
+            <div>
+                <label for="emailId">Email:</label>
+                <input type="email" id="emailId" name="email" />
+            </div>
+            <div>
+                <label for="favoriteColorId">Favorite Color:</label>
+                <input type="color" id="favoriteColorId" name="favoriteColor" />
+            </div>
+            <div>
+                <label for="favoriteNumberId">Favorite Number:</label>
+                <input type="number" id="favoriteNumberId" name="favoriteNumber" />
+            </div>
+            <div>
+                <label for="favoriteAnimeId">What's your favorite Anime?:</label>
+                <input type="text" id="favoriteAnimeId" name="favoriteAnime" />
+            </div>
+            <div>
+                <input type="checkbox" id="correctInfoId" name="correctInfo" />
+                <label for="correctInfoId">Info above is correct</label>
+            </div>
+            <div>
+                <input type="submit" />
+                <!--a button that allows us to send to the specified endpoint (example.com)-->
+            </div>
+
+
+        </form>
+    </main>
+</body>
+
+</html>

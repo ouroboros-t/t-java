@@ -1,0 +1,15 @@
+header{
+    text-align: center;
+}
+img{
+    width: 250px;
+    height:300px;
+}
+body{
+    background-color: black;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+}
+table{
+    text-align: center;
+}
