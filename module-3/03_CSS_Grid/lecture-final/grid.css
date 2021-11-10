@@ -1,0 +1,47 @@
+header {
+    grid-area: header-ga;
+}
+
+#menu-nav {
+    grid-area: menu-ga;
+}
+
+main {
+    grid-area: main-ga;
+}
+
+#upcoming-events {
+    grid-area: events-ga;
+}
+
+footer {
+    grid-area: footer-ga;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 200px 1fr 1fr;
+    grid-template-areas:
+        "header-ga header-ga header-ga"
+        "menu-ga   main-ga   events-ga"
+        "footer-ga footer-ga footer-ga";
+    gap: 10px;
+    height: 100vh;
+}
+
+/*
+@media screen and (max-width: 768px) {
+    #upcoming-events {
+        display: none;
+    }
+    
+    .container {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "header-ga"
+            "menu-ga"
+            "main-ga"
+            "footer-ga";
+    }
+}
+*/
