@@ -1,0 +1,43 @@
+header{
+    grid-area: header-ga;
+}
+#menu-nav{
+    grid-area: menu-ga;
+}
+main {
+    grid-area: main-ga;
+}
+
+#upcoming-events{
+    grid-area: events-ga;
+}
+
+footer{
+    grid-area: footer-ga;
+}
+
+.container{
+    display: grid;
+    /*all of its children now are now placeable in grid*/
+    grid-template-columns: 200px 1fr 200px;
+    grid-template-areas:
+        ".       header-ga   ." /*spans all the way across top the (.) is the placeholder..*/
+        "menu-ga   main-ga   events-ga"
+        "footer-ga footer-ga footer-ga";
+        gap: 10px;
+        height: 100vh;
+        /*vh is the height of the page, vw is the width of the page
+        controls overflow. stands for viewport height/width. */
+}
+
+@media screen and (max-width: 768px){
+   .container{
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "header-ga"
+        "menu-ga"
+        "main-ga"
+        "events-ga"
+        "footer-ga";
+   } 
+}
