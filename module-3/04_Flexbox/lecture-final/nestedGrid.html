@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .outer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-areas:
+                "1 2"
+                "3 4";
+        }
+
+        #id1 {
+            grid-area: 1;
+        }
+
+        #id2 {
+            grid-area: 2;
+            display: grid;
+        }
+
+        #id3 {
+            grid-area: 3;
+        }
+
+        #id4 {
+            grid-area: 4;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="outer-grid">
+        <div id="id1">1</div>
+        <div id="id2" class="inner-grid">
+            <div id="a">a</div>
+            <div id="b">b</div>
+        </div>
+        <div id="id3">3</div>
+        <div id="id4">4</div>
+    </div>
+</body>
+
+</html>
