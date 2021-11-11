@@ -1,0 +1,46 @@
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#featured > section {
+    display: flex;
+
+}
+#featured > section > article > div{
+    /*text-align:center;*/
+    display: flex;
+    justify-content: center;
+}
+
+#hero > footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#all-items > section > article {
+    display: flex;
+    align-items: center;
+
+}
+
+/*applying row-reverse to just the even children*/
+#all-items > section > article:nth-child(even){
+    flex-direction: row-reverse;
+}
+
+#all-items >section {
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (max-width: 1024px){
+    #featured > section {
+        flex-wrap: wrap;
+    }
+    #featured > section > article:nth-child(even){
+        border:none;
+    }
+}
