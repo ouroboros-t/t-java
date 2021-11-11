@@ -147,8 +147,8 @@ footer{
         grid-template-areas:
         "headline-ga"
         "student-picture-ga"
-        "student-quote-ga"
         "student-contact-ga"
+        "student-quote-ga"
         "student-profile-ga"
         "experience-ga"
         "footer-ga";
