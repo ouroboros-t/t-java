@@ -6,16 +6,20 @@ body {
 header {
   background-color: #F0F0F0;
   padding: 20px;
+  display:flex;
+  
 }
 
 .logo {
   width: 140px;
+  display: flex;
 }
 
 ul {
   margin: 0;
   padding: 0;
   list-style-type: none;
+  display: flex;
 }
 
 li {
@@ -38,7 +42,10 @@ li a:hover {
   text-decoration: underline;
 }
 
-.spacer {}
+.spacer {
+  display:flex;
+  flex-basis: 100%;
+}
 
 .my-account img {
   width: 32px;

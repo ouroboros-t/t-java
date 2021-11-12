@@ -1,15 +1,17 @@
 body {
   margin: 20px;
-  padding: 0
+  padding: 0;  
 }
 
 header {
   background-color: #F0F0F0;
   padding: 20px;
+  display: flex;
 }
 
 .logo {
   width: 140px;
+  display: flex;
 }
 
 nav {
@@ -20,6 +22,8 @@ ul {
   margin: 0;
   padding: 0;
   list-style-type: none;
+  display: flex;
+  justify-content: center;
 }
 
 li {
@@ -29,6 +33,8 @@ li {
   color: #707070;
   padding: 0 20px 0 0;
   margin-left: 20px;
+  
+  
 }
 
 a,
