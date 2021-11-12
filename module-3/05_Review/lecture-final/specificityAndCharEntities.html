@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Specificity Test</title>
+    <style>
+        #inner-2-id {
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+
+        .inner-2-class {
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        }
+
+
+        span {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+
+        div {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        body {
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="outer-id" class="outer-class">
+        <div id="inner-1-id" class="inner-1-class">Here's some text in the div #inner-1-id, .inner-1-id</div>
+        <div id="inner-2-id" class="inner-2-class">Here's some text in the div #inner-2-id, .inner-2-id</div>
+        <span id="inner-3-id" class="inner-3-class">Here's some text in the div #inner-3-id, .inner-3-id</span>
+    </div>
+
+    <h1>Character Entities</h1>
+
+
+    Copyright symbol - &copy;<br /><br />
+    .&nbsp;&nbsp;&nbsp;Hello<br /><br>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis Mountain&nbsp;Dew&trade; labore, qui eaque eveniet
+    esse rerum
+    pariatur
+    blanditiis natus doloribus minus recusandae similique magnam, ullam perspiciatis quia architecto, id deserunt? In!
+
+    <br /><br />
+    Bits &amp; Bytes
+    <br /><br />
+    5 &lt; 2=false
+    <br />
+    Soccer ball - &#9917;
+</body>
+
+</html>
