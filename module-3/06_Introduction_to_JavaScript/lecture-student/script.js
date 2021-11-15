@@ -10,8 +10,19 @@
  */
 function variables() {
   // Declares a variable where the value cannot be changed
+  const DAYS_IN_WEEK = 7; //const - constant/final cannot be changed
+  //DAYS_IN_WEEK = 8; <-- not allowed
   // Declares a variable those value can be changed
+  let num = 5;
+  num = 6;
+  console.log(num);
   // Declares a variable that will always be an array
+  const myArray = []; //empty array that can't be type-changed (can be added to use array methods)
+  myArray.push(5);
+  console.log(myArray);
+
+  let x = 7;
+  //let x = 8;
 }
 
 /**
@@ -21,7 +32,7 @@ function variables() {
  * @param {Number} param2 The second number to display
  */
 function printParameters(param1, param2) {
-  console.log(`The value of param1 is ${param1}`);
+  console.log(`The value of param1 is ${param1}`); //backticks allow for easy concactination 
   console.log(`The value of param2 is ${param2}`);
 }
 
@@ -54,6 +65,32 @@ function falsy(x) {
   }
 }
 
+/*
+loops in jS are similar to java
+*/
+function sumArray(arrayToSum) {
+  let sum = 0; //initialize
+  for (let i = 0; i < arrayToSum.length; ++i) {
+    sum += arrayToSum[i];
+  }
+  return sum;
+
+}
+
+function sumArrayEnhanced(arrayToSum) {
+  let sum = 0;
+
+  for (let value of arrayToSum) {
+    sum += value;
+  }
+  return sum;
+}
+
+
+
+
+
+
 /**
  *  Objects are simple key-value pairs
     - values can be primitive data types
@@ -70,14 +107,34 @@ function objects() {
       "Milton Waddams",
       "Samir Nagheenanajar",
       "Michael Bolton"
-    ]
+    ],
+    department: {
+      id: 101,
+      name: "IT Development"
+    }
+
+
   };
 
   // Log the object
-
+  console.table(person)
   // Log the first and last name
+  console.log(`${person.firstName} ${person.lastName}`)
+
 
   // Log each employee
+  for (let i = 0; i < person.employees.length; ++i) {
+    console.log(person.employees[i]);
+  }
+
+  //Log the department ID
+  console.log(`Department ID: ${person.department.id}`)
+
+  return {
+    isMonday: true,
+    cohortWeek: 10
+  };
+
 }
 
 /*
