@@ -43,6 +43,23 @@
             padding: 20px 0;
             font-size: 30px;
         }
+
+        .flex-container {
+            display: flex;
+            border: 2px solid pink;
+            justify-content: stretch;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .flex-container>div {
+            flex-grow: 1;
+            border: 2px solid green;
+        }
+
+        .flexitem3 {
+            order: -1;
+        }
     </style>
 </head>
 
@@ -58,6 +75,16 @@
         <div class="item3">Main</div>
         <div class="item4">Right</div>
         <div class="item5">Footer</div>
+    </div>
+
+    <h2>flexbox</h2>
+
+    <div class="flex-container">
+        <div class="flexitem1">Header</div>
+        <div class="flexitem2">Menu</div>
+        <div class="flexitem3">Main</div>
+        <div class="flexitem4">Right</div>
+        <div class="flexitem5">Footer</div>
     </div>
 
 </body>
