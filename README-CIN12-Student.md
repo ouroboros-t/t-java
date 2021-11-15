@@ -36,7 +36,7 @@ Module 3 covers an introduction to front-end web application development using H
 ---
 
 ## 14-Week Syllabus
-The following table describes the schedule of the curriculum. (**Note:** this table does not render through the Bitbucket web interface and is best viewed in VS Code)
+The following table describes the schedule of the curriculum. (**Note:** this table does not render through the Bitbucket web interface and is best viewed in VS Code or Typora)
 
 <table>
     <tbody>
@@ -274,11 +274,11 @@ The following table describes the schedule of the curriculum. (**Note:** this ta
         </tr>
         <tr>
             <td class="matchmaking">Day 2</td>
-            <td class="matchmaking">Matchmaking</td>
+            <td class="matchmaking">Vue Component Communication</td>
         </tr>
         <tr>
             <td>Day 3</td>
-            <td>Event Handling with Vue</td>
+            <td>Review</td>
         </tr>
         <tr>
             <td>Day 4</td>
@@ -292,7 +292,7 @@ The following table describes the schedule of the curriculum. (**Note:** this ta
         <tr>
             <td rowspan="5">Week 12<br><small>November 29</small></td>
             <td>Day 1</td>
-            <td>Vue Component Communication</td>
+            <td>Vue Router</td>
         </tr>
         <tr>
             <td class="matchmaking">Day 2</td>
@@ -300,24 +300,23 @@ The following table describes the schedule of the curriculum. (**Note:** this ta
         </tr>
         <tr>
             <td>Day 3</td>
-            <td>Vue Router</td>
+            <td>Calling Web Services (GET)</td>
         </tr>
         <tr>
             <td>Day 4</td>
-            <td>Calling Web Services (GET)</td>
+            <td>Calling Web Services (POST, PUT, DELETE)</td>
         </tr>
         <tr class="review">
             <td>Day 5</td>
-            <td>Calling Web Services (POST, PUT, DELETE)</td>
+            <td>Review / Final Capstone Kick-off!</td>
         </tr>
         <!-- FINAL CAPSTONE -->
         <!-- Week 13 - 14 -->
         <tr>
             <th style="background-color: #363E8B; color: white;">Final Capstone</th>
             <td>Week 13 - 14<br><small>December 6</small></td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
+            <td>Day 1</td>
+            <td class="matchmaking">Employer Matchmaking</td>
         </tr>
     </tbody>
 </table>
-
