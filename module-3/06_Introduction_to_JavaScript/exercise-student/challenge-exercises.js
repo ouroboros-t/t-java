@@ -6,25 +6,54 @@
     evenness, and return the position of this number. _Keep in mind that your task is to help 
     Bob solve a real IQ test, which means indexes of the elements start from 1 (not 0)_
 
-		iqTest("2 4 7 8 10") → 3 //third number is odd, while the rest are even
-		iqTest("1 2 1 1") → 2 // second number is even, while the rest are odd
-		iqTest("") → 0 // there are no numbers in the given set
+        iqTest("2 4 7 8 10") → 3 //third number is odd, while the rest are even
+        iqTest("1 2 1 1") → 2 // second number is even, while the rest are odd
+        iqTest("") → 0 // there are no numbers in the given set
         iqTest("2 2 4 6") → 0 // all numbers are even, therefore there is no position of an odd number
 */
+/**
+ * 
+ * @param {*} x is an array
+ */
+function iqTest(x) {
+    if (x.length == 0) {
+        return 0;
+    } else {
+        const xArray = x.split(" ");
+        const newArray = [];
+        let evenCounter = 0;
+        let oddCounter = 0;
+        for (let i = 0; i < xArray.length; i++) {
+            newArray.push(xArray[i] % 2);
+            if (xArray[i] % 2 == 0) {
+                evenCounter++;
+            } else {
+                oddCounter++;
+            }
+        }
+        if (evenCounter < oddCounter) {
+
+            return newArray.indexOf(0) + 1;
+        }
+        return newArray.indexOf(1) + 1;
+
+    }
+}
+
 
 /*
-2. **titleCase** Write a function that will convert a string into title case, given an optional 
-    list of exceptions (minor words). The list of minor words will be given as a string with each 
-    word separated by a space. Your function should ignore the case of the minor words string -- 
+2. **titleCase** Write a function that will convert a string into title case, given an optional
+    list of exceptions (minor words). The list of minor words will be given as a string with each
+    word separated by a space. Your function should ignore the case of the minor words string --
     it should behave in the same way even if the case of the minor word string is changed.
 
 
 * First argument (required): the original string to be converted.
 * Second argument (optional): space-delimited list of minor words that must always be lowercase
-except for the first word in the string. The JavaScript tests will pass undefined when this 
+except for the first word in the string. The JavaScript tests will pass undefined when this
 argument is unused.
 
-		titleCase('a clash of KINGS', 'a an the of') // should return: 'A Clash of Kings'
-		titleCase('THE WIND IN THE WILLOWS', 'The In') // should return: 'The Wind in the Willows'
+        titleCase('a clash of KINGS', 'a an the of') // should return: 'A Clash of Kings'
+        titleCase('THE WIND IN THE WILLOWS', 'The In') // should return: 'The Wind in the Willows'
         titleCase('the quick brown fox') // should return: 'The Quick Brown Fox'
 */
