@@ -190,7 +190,7 @@ parameter, `x` passed in.
 function filterMultiplesOfX(y, x) {
 	let multiplesArray = [];
 	for (let i = 0; i < y.length; ++i) {
-		if ((x % y[i]) == 0) {
+		if ((y[i] % x) == 0) {
 			multiplesArray.push(y[i]);
 		}
 	}
@@ -212,10 +212,11 @@ firstName, lastName, and age. Populate the properties with your values.
 	}
 */
 
-function createObject(x, y, z) {
-	let me = {
-		firstName: x,
-		lastName: y,
-		age: z
+function createObject() {
+	const mickey = {
+		firstName: "Mickey",
+		lastName: "Mouse",
+		age: 92
 	};
-}
+	return mickey;
+};
