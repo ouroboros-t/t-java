@@ -20,6 +20,74 @@ function printToConsole(value) {
   console.log(value);
 }
 
+function printAllToConsole() {
+  let outputStr = '';
+  for (const arg of arguments) {
+    outputStr += arguments + ", ";
+  }
+  console.log(outputStr);
+}
+
+function printArrayElements(arrToPrint) {
+  arrToPrint.forEach(printToConsole);
+}
+
+function printArrayElementsV2(arrToPrint) {
+  arrToPrint.forEach(function (value) {
+    console.log(value);
+  })
+  //function is an anonymous function because it is unnamed and lives inside of the ArrytoPrint 
+}
+
+function printArrayElementsV3(arrToPrint) {
+  arrToPrint.forEach((val) => {
+    console.log(val);
+  });
+}
+
+//when there's only one parameter, parentheses are optional:
+function printArrayElementsV4(arrToPrint) {
+  arrToPrint.forEach(val => {
+    console.log(val);
+  });
+}
+//=> means anonymous function
+function printArrayElementsV5(arrToPrint) {
+  arrToPrint.forEach((val, index) => console.log(val));
+}
+
+function computeDouble(value) {
+  return value * 2;
+}
+
+function arrayDoubler(arrToDouble) {
+  return arrToDouble.map(value => {
+    return value * 2;
+  });
+}
+
+//evens only can be broken down into 
+function isEven(value) {
+  return value % 2 == 0;
+}
+
+function evensOnly(arrToFilter = []) {
+  const result = arrToFilter.filter(isEven);
+  return result;
+}
+
+//evensOnly without separate method (anonymous function):
+
+function evensOnlyV2(arrToFilter = []) {
+  const results = arrToFilter.filter((value) => {
+    return value % 2 == 0;
+  })
+  return results;
+}
+
+
+
+
 /**
  * Write a function called multiplyTogether that multiplies two numbers together. But 
  * what happens if we don't pass a value in? What happens if the value is not a number?
@@ -27,6 +95,14 @@ function printToConsole(value) {
  * @param {number} firstParameter the first parameter to multiply
  * @param {number} secondParameter the second parameter to multiply
  */
+
+
+function multiplyTogether(firstParameter, secondParameter) {
+  console.log(`in multiplyTogether with ${firstParameter} and ${secondParameter}`);
+  return firstParameter * secondParameter;
+}
+
+
 
 /**
  * This version makes sure that no parameters are ever missing. If
@@ -39,8 +115,12 @@ function printToConsole(value) {
  * @param {number} [secondParameter=0] the second parameter to multiply
  */
 
+function multiplyNoUndefined(firstParameter = 0, secondParameter = 0) {
+  console.log(`in multiplyNoUndefined with ${firstParameter} and ${secondParameter}`);
+  return firstParameter * secondParameter;
+}
 
- 
+
 /**
  * Functions can return earlier before the end of the function. This could be useful
  * in circumstances where you may not need to perform additional instructions or have to
@@ -92,6 +172,19 @@ function createSentenceFromUser(name, age, listOfQuirks = [], separator = ', ') 
   return description + listOfQuirks.join(separator);
 }
 
+
+function argumentsExample() {
+  for (const arg of arguments) {
+    console.log(`${typeof arg} : ${arg}`);
+  }
+}
+
+
+function sum(previousValue, currentValue) {
+  console.log(`In sum with ${previousValue} and ${currentValue}`);
+  return previousValue + currentValue;
+}
+
 /**
  * Takes an array and, using the power of anonymous functions, generates
  * their sum.
@@ -100,8 +193,33 @@ function createSentenceFromUser(name, age, listOfQuirks = [], separator = ', ') 
  * @returns {number} sum of all the numbers
  */
 function sumAllNumbers(numbersToSum) {
-  return numbersToSum.reduce();
+
+  return numbersToSum.reduce((runningSum, curValue) =>
+    runningSum + curValue);
 }
+//without the 0 set as the default, the first number will always be added.
+//second parameter to reduce is the initial value. 
+function sumAllEvenNumbers(numbersToSum) {
+  return numbersToSum.reduce((runningSum, curValue) => {
+    if (curValue % 2 === 0) {
+      return runningSum + curValue;
+    } else {
+      return runningSum;
+    }
+  }, 0)
+}
+
+
+
+//create callback function for the reduce()call:
+function sumLetters(previousValue, currentValue) {
+  return previousValue + currentValue.length;
+}
+function countLetters(arrayOfWords) {
+  return arrayOfWords.reduce(sumLetters, 0);
+}
+
+
 
 /**
  * Takes an array and returns a new array of only numbers that are
@@ -111,4 +229,8 @@ function sumAllNumbers(numbersToSum) {
  * @returns {number[]} a new array with only those numbers that are
  *   multiples of 3
  */
-function allDivisibleByThree(numbersToFilter) {}
+function allDivisibleByThree(numbersToFilter) {
+  return numbersToFilter.filter(value => {
+    return value % 3 === 0;
+  });
+}
