@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <div>This is not part of Vue</div>
+    <main id="myApp">
+        This will be part of Vue<br />
+        {{ message }}
+
+        <div>
+            <input type="text" v-model="firstName">
+        </div>
+        firstName : {{ firstName }}
+
+        <!-- for (String planet : planets) { ... } -->
+        <h3>Planets</h3>
+        <div v-for='message in planets'>
+            <p>{{ message }}</p>
+        </div>
+
+        <p>{{ 10 > 5 }}</p>
+
+        <input type="checkbox" v-model="showDescription" />Show description
+        <p v-show="showDescription">This is the description</p>
+    </main>
+</body>
+
+</html>
