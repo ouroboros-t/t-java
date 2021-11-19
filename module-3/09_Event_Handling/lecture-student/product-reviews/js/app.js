@@ -59,13 +59,49 @@ function displayReview(review) {
 
 // LECTURE STARTS HERE ---------------------------------------------------------------
 
-// Set the product reviews page title.
-setPageTitle();
-// Set the product reviews page description.
-setPageDescription();
-// Display all of the product reviews on our page.
-displayReviews();
+document.addEventListener("DOMContentLoaded", () => {
+  // Set the product reviews page title.
+  setPageTitle();
+  // Set the product reviews page description.
+  setPageDescription();
+  // Display all of the product reviews on our page.
+  displayReviews();
 
+
+  const descPara = document.querySelector(".description");
+  descPara.addEventListener('click', () => {
+    toggleDescriptionEdit(descPara);
+  });
+
+  const inputCtrl = document.getElementById('inputDesc');
+  inputCtrl.addEventListener('keyup', (event) => {
+    if (event.key === 'Enter') {
+      //we pass in the key they pressed and that they save:
+      exitDescriptionEdit(inputCtrl, true);
+    } else if (event.key === 'Escape') {
+      exitDescriptionEdit(inputCtrl, false);
+    }
+  });
+
+  //separate event listener required because we're listening for the mouse and not keys:
+  inputCtrl.addEventListener('mouseout', () => {
+    exitDescriptionEdit(inputCtrl, false);
+  });
+
+  const formBtn = document.getElementById('btnToggleForm');
+  formBtn.addEventListener('click', () => {
+    showHideForm();
+  });
+
+  const saveReviewBtn = document.getElementById('btnSaveReview');
+  saveReviewBtn.addEventListener("click", (event) => {
+    //we want to capture the event information ourselves and not send to server
+    //why are we "preventing this"? because we are handling the event with our own code - save review
+    event.preventDefault();
+    saveReview();
+  });
+
+});
 /**
  * Hide the description and show the text box.
  *
@@ -130,4 +166,23 @@ function resetFormValues() {
 /**
  * Save the review that was added using the add review form.
  */
-function saveReview() {}
+function saveReview() {
+  const name = document.getElementById('name');
+  const title = document.getElementById('title');
+  const rating = document.getElementById('rating');
+  const review = document.getElementById('review');
+
+  //create a new review object: 
+  const newReview = {
+    reviewer: name.value,
+    title: title.value,
+    review: review.value,
+    rating: rating.value
+  };
+
+  reviews.push(newReview);
+  displayReview(newReview);
+  showHideForm();
+  //this does not account for form validation.
+  //console.log(name, value);
+}
