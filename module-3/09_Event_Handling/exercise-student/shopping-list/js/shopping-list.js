@@ -36,6 +36,43 @@ function displayGroceries() {
     ul.appendChild(li);
   });
 }
+document.addEventListener("DOMContentLoaded", () => {
 
-setPageTitle();
-displayGroceries();
+  setPageTitle();
+  displayGroceries();
+
+  //event listeners and logic do here:
+  const items = document.querySelectorAll('li');
+  items.forEach((item) => {
+    item.addEventListener('click', () => {
+      if (!item.classList.contains('completed')) {
+        item.classList.add('completed');
+        item.querySelector('i').classList.add('completed');
+      }
+    });
+
+    item.addEventListener('dblclick', () => {
+      if (item.classList.contains('completed')) {
+        item.classList.remove('completed');
+        item.querySelector('i').classList.remove('completed');
+      }
+    });
+  });
+
+  const toggleAll = document.getElementById('toggleAll');
+  toggleAll.addEventListener('click', () => {
+    items.forEach((item) => {
+      if (!item.classList.contains('completed')) {
+        item.classList.add('completed')
+        item.querySelector('i').classList.add('completed')
+        toggleAll.innerText = 'Mark All Incomplete';
+      } else {
+        item.classList.remove('completed')
+        item.querySelector('i').classList.remove('completed')
+        toggleAll.innerText = "Mark All Complete";
+      }
+    });
+  });
+
+
+});
