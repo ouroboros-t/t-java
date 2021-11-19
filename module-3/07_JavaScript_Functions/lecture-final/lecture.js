@@ -198,7 +198,7 @@ function sumAllEvenNumber(numbersToSum) {
     } else {
       return runningSum;
     }
-  }, 100);
+  }, 0);
 }
 
 function sumLetters(previousValue, currentValue) {
@@ -223,3 +223,7 @@ function countLettersV2(arrayOfWords) {
  *   multiples of 3
  */
 function allDivisibleByThree(numbersToFilter) { }
+
+function doubleArray(arr) {
+  return arr.map(value => value * 2);
+}
