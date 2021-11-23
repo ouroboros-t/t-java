@@ -7,7 +7,7 @@ export default new Vuex.Store({
   state: {
     name: 'Cigar Parties for Dummies',
     description: 'Host and plan the perfect cigar party for all of your squirrelly friends.',
-    filter: 0,
+    filter: 0, //0 means show all reviews
     reviews: [
       {
         reviewer: 'Malcolm Gladwell',
@@ -44,6 +44,7 @@ export default new Vuex.Store({
     ],
   },
   mutations: {
+    //instead of manipulating data directly, create a mutation:
     ADD_REVIEW(state, review) {
       state.reviews.unshift(review);
     },
@@ -51,7 +52,7 @@ export default new Vuex.Store({
       state.filter = filter;
     },
     FLIP_FAVORITED(state, reviewToChange) {
-      reviewToChange.favorited = ! reviewToChange.favorited;
+      reviewToChange.favorited = !reviewToChange.favorited;
     }
   },
   actions: {

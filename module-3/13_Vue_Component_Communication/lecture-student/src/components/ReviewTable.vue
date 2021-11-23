@@ -2,7 +2,7 @@
 
 <script>
 export default {
-  name: "review-table"
+  name: "review-table",
 };
 </script>
 

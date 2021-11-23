@@ -5,7 +5,8 @@
       href="#"
       v-if="showForm === false"
       v-on:click.prevent="showForm = true"
-    >Show Form</a>
+      >Show Form</a
+    >
 
     <form v-on:submit.prevent="addNewReview" v-if="showForm === true">
       <div class="form-element">
@@ -49,6 +50,7 @@ export default {
   },
   methods: {
     addNewReview() {
+      this.store.commit("ADD_REVIEW", this.newReview);
       this.resetForm();
     },
     resetForm() {
