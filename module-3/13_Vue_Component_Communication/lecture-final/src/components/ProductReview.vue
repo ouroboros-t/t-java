@@ -73,7 +73,7 @@
 
     <div
       class="review"
-      v-bind:class="{ ilikeit: review.favorited }"
+      v-bind:class="{ favorited: review.favorited }"
       v-for="review in filteredReviews"
       v-bind:key="review.id"
     >
@@ -224,7 +224,7 @@ div.main div.review {
   margin: 10px;
 }
 
-div.main div.review.ilikeit {
+div.main div.review.favorited {
   background-color: lightyellow;
 }
 
