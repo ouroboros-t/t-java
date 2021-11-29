@@ -41,8 +41,8 @@ export default {
         title: "",
         rating: 0,
         review: "",
-        favorited: false
-      }
+        favorited: false,
+      },
     };
   },
   methods: {
@@ -51,11 +51,15 @@ export default {
       this.newReview.productID = productID;
       this.$store.commit("ADD_REVIEW", this.newReview);
       // TODO: send the visitor back to the product page to see the new review
+      this.$router.push({ name: "product-detail", params: { id: productID } });
+      //at the end of these functions running, we're literally pushing a new view to the user via the router...
     },
     resetForm() {
       this.newReview = {};
-    }
-  }
+      const productID = this.$route.params.id;
+      this.$router.push({ name: "product-detail", params: { id: productID } });
+    },
+  },
 };
 </script>
 

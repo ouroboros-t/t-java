@@ -1,5 +1,8 @@
 <template>
-  <div></div>
+  <div>
+    <router-view />
+    <!--brings up the currently active view-->
+  </div>
 </template>
 
 <script>
