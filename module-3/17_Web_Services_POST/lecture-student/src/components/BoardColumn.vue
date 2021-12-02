@@ -10,7 +10,7 @@
       >
         <div class="header">
           <h3>{{ card.title }}</h3>
-          <img :src="card.avatar" class="avatar" />
+          <!--img :src="card.avatar" class="avatar" /-->
         </div>
         <div class="footer">
           <span class="date">{{ card.date }}</span>
@@ -25,28 +25,28 @@
 
 <script>
 export default {
-  name: 'board-column',
-  props: ['title', 'cards', 'boardID'],
+  name: "board-column",
+  props: ["title", "cards", "boardID"],
   methods: {
     viewCardDetails(cardID) {
       this.$router.push(`/board/${this.boardID}/card/${cardID}`);
     },
     getTagClass(tag) {
-      let clazz = '';
+      let clazz = "";
       switch (tag) {
-        case 'Feature Request':
-          clazz = 'feature';
+        case "Feature Request":
+          clazz = "feature";
           break;
-        case 'Design':
-          clazz = 'design';
+        case "Design":
+          clazz = "design";
           break;
-        case 'Q&A':
-          clazz = 'qa';
+        case "Q&A":
+          clazz = "qa";
           break;
       }
       return clazz;
-    }
-  }
+    },
+  },
 };
 </script>
 

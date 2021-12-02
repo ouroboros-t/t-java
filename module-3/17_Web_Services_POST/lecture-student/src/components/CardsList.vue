@@ -5,24 +5,41 @@
       <router-link
         tag="button"
         class="btn addNewCard"
-        :to="{ name: 'AddCard', params: {boardID: this.boardId} }"
+        :to="{ name: 'AddCard', params: { boardID: this.boardId } }"
         v-if="!isLoading"
-      >Add New Card</router-link>
+        >Add New Card</router-link
+      >
       <button
         class="btn btn-cancel deleteBoard"
         v-if="!isLoading"
         v-on:click="deleteBoard"
-      >Delete Board</button>
+      >
+        Delete Board
+      </button>
     </div>
     <div class="loading" v-if="isLoading">
       <img src="../assets/ping_pong_loader.gif" />
     </div>
     <div v-else>
-      <div class="status-message error" v-show="errorMsg !== ''">{{errorMsg}}</div>
+      <div class="status-message error" v-show="errorMsg !== ''">
+        {{ errorMsg }}
+      </div>
       <div class="boards">
-        <board-column title="Planned" :cards="planned" :boardID="this.boardId" />
-        <board-column title="In Progress" :cards="inProgress" :boardID="this.boardId" />
-        <board-column title="Completed" :cards="completed" :boardID="this.boardId" />
+        <board-column
+          title="Planned"
+          :cards="planned"
+          :boardID="this.boardId"
+        />
+        <board-column
+          title="In Progress"
+          :cards="inProgress"
+          :boardID="this.boardId"
+        />
+        <board-column
+          title="Completed"
+          :cards="completed"
+          :boardID="this.boardId"
+        />
       </div>
     </div>
     <div class="board-actions" v-if="!isLoading">
@@ -38,26 +55,26 @@ import BoardColumn from "@/components/BoardColumn";
 export default {
   name: "cards-list",
   components: {
-    BoardColumn
+    BoardColumn,
   },
   data() {
     return {
       title: "",
       boardId: 0,
       isLoading: true,
-      errorMsg: ""
+      errorMsg: "",
     };
   },
   methods: {
     retrieveCards() {
       boardsService
         .getCards(this.boardId)
-        .then(response => {
+        .then((response) => {
           this.title = response.data.title;
           this.$store.commit("SET_BOARD_CARDS", response.data.cards);
           this.isLoading = false;
         })
-        .catch(error => {
+        .catch((error) => {
           if (error.response && error.response.status === 404) {
             alert(
               "Board cards not available. This board may have been deleted or you have entered an invalid board ID."
@@ -67,8 +84,12 @@ export default {
         });
     },
     deleteBoard() {
-      
-    }
+      this.isLoading = true;
+      boardsService.deleteBoard(this.$route.params.id).this(() => {
+        this.$store.commit("DELETE_BOARD", this.boardId);
+        this.$router.push("/");
+      });
+    },
   },
   created() {
     this.boardId = this.$route.params.id;
@@ -77,20 +98,20 @@ export default {
   computed: {
     planned() {
       return this.$store.state.boardCards.filter(
-        card => card.status === "Planned"
+        (card) => card.status === "Planned"
       );
     },
     inProgress() {
       return this.$store.state.boardCards.filter(
-        card => card.status === "In Progress"
+        (card) => card.status === "In Progress"
       );
     },
     completed() {
       return this.$store.state.boardCards.filter(
-        card => card.status === "Completed"
+        (card) => card.status === "Completed"
       );
-    }
-  }
+    },
+  },
 };
 </script>
 
