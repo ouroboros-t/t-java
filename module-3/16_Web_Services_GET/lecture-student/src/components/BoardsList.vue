@@ -21,21 +21,22 @@
 </template>
 
 <script>
-import boardsService from '../services/BoardService';
+import boardsService from "../services/BoardService";
 
 export default {
   data() {
     return {
       boards: [],
-      isLoading: true
+      isLoading: true,
     };
   },
   created() {
-    boardsService.getBoards().then(response => {
+    let boardsPromise = boardsService.getBoards();
+    boardsPromise.then((response) => {
       this.boards = response.data;
       this.isLoading = false;
     });
-  }
+  },
 };
 </script>
 
