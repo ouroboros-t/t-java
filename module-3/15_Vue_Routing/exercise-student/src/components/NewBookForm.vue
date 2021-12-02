@@ -18,9 +18,7 @@
       placeholder="ISBN"
       v-model="book.isbn"
     />
-    <router-link v-bind:to="{ name: 'my-books' }">
-      <button>Save</button></router-link
-    >
+    <button>Save</button>
   </form>
 </template>
 
@@ -46,6 +44,7 @@ export default {
         read: false,
         isbn: "",
       };
+      this.$router.push({ name: "my-books" });
     },
   },
 };
